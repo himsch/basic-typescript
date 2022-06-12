@@ -42,7 +42,31 @@
   // const maker = new CoffeeMaker(32);
   // static 메소드로만 인스턴스를 생성하도록 유도하는 방법.
   const maker = CoffeeMaker.makeMachine(32);
-  console.log(maker);
   maker.fillCoffeeBeans(10);
-  console.log(maker.makeCoffee(2));
+  maker.makeCoffee(2);
+
+  class User {
+    // get,set 키워드를 사용하면 함수형태가 되지만, 사용할때는 아래와같이 맴버변수처럼 사용해
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+
+    private internalAge = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(num: number) {
+      if (num < 0) {
+        throw new Error('age than 0')
+      }
+      this.internalAge = num;
+    }
+
+    constructor(private firstName: string, private lastName: string) {
+    }
+  }
+
+  const user = new User('Hong', 'Song');
+  user.age = 6; // setter
+  console.log(user.fullName); // getter
 }
