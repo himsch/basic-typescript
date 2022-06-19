@@ -41,3 +41,22 @@
   const songAfterPay2 = pay(song);
   songAfterPay2.workFullTime();
 }
+
+{
+  const obj = {
+    name: 'song',
+    age: 20,
+  };
+
+  const obj2 = {
+    animal: '🐎',
+  }
+
+  console.log(getValue(obj, 'name')); // song
+  console.log(getValue(obj, 'age')); // 20
+  console.log(getValue(obj2, 'animal')); // 🐎
+
+  function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+  }
+}
