@@ -14,17 +14,16 @@
     clean(): void;
   }
 
-
   class CoffeeMachine implements CoffeeMaker, CommercialCoffeeMaker {
     private static BEANS_GRAM_PER_SHOT: number = 7; // class level
-    private coffeeBeans: number = 0;  // instance(Object) level
+    private coffeeBeans: number = 0; // instance(Object) level
 
     // 생성자가 private 이면, new 키워드를 통해 인스턴스를 생성 할 수 없다.
     private constructor(coffeeBeans: number) {
       this.coffeeBeans = coffeeBeans;
     }
 
-    static makeMachine(coffeeBeans: number): CoffeeMaker {
+    static makeMachine(coffeeBeans: number): CoffeeMachine {
       return new CoffeeMachine(coffeeBeans);
     }
 
@@ -36,19 +35,19 @@
     }
 
     clean() {
-      console.log('cleaning the machine...🤪');
+      console.log("cleaning the machine...🤪");
     }
 
     private grindBeans(shots: number) {
       console.log(`grinding beans for ${shots}`);
       if (this.coffeeBeans < shots * CoffeeMachine.BEANS_GRAM_PER_SHOT) {
-        throw new Error('Not enough coffee beans!');
+        throw new Error("Not enough coffee beans!");
       }
       this.coffeeBeans -= shots * CoffeeMachine.BEANS_GRAM_PER_SHOT;
     }
 
     private preheat(): void {
-      console.log('heating up...');
+      console.log("heating up...");
     }
 
     private extract(shots: number): CoffeeCup {
@@ -56,7 +55,7 @@
       return {
         shots,
         hasMilk: false,
-      }
+      };
     }
 
     makeCoffee(shots: number): CoffeeCup {
@@ -67,8 +66,7 @@
   }
 
   class AmateurUser {
-    constructor(private machine: CoffeeMaker) {
-    }
+    constructor(private machine: CoffeeMaker) {}
 
     makeCoffee() {
       const coffee = this.machine.makeCoffee(2);
@@ -77,8 +75,7 @@
   }
 
   class ProBarista {
-    constructor(private machine: CommercialCoffeeMaker) {
-    }
+    constructor(private machine: CommercialCoffeeMaker) {}
 
     makeCoffee() {
       const coffee = this.machine.makeCoffee(2);
@@ -88,7 +85,6 @@
     }
   }
 
-  // @ts-ignore
   const maker: CoffeeMachine = CoffeeMachine.makeMachine(32);
   const amateur = new AmateurUser(maker);
   const pro = new ProBarista(maker);
