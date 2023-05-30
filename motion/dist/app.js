@@ -9,7 +9,7 @@ class App {
         this.page.attachTo(appRoot);
         const image = new ImageComponent("Image Title", "https://picsum.photos/600/300");
         image.attachTo(appRoot, "beforeend");
-        const video = new VideoComponent("Video Title", "https://www.youtube.com/E-CHfmMOmAw");
+        const video = new VideoComponent("Video Title", "https://www.youtube.com/embed/E-CHfmMOmAw");
         video.attachTo(appRoot, "beforeend");
         const note = new NoteComponent("Note Title", "Note Body");
         note.attachTo(appRoot, "beforeend");
